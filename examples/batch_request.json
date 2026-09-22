@@ -1,0 +1,1893 @@
+{
+  "iterations": 3,
+  "time_weight": 0.5,
+  "reference": [
+    {
+      "timestamp": 1790000000.0,
+      "label": "EVT_000",
+      "line": "ref",
+      "seq": 0
+    },
+    {
+      "timestamp": 1790000030.0,
+      "label": "EVT_001",
+      "line": "ref",
+      "seq": 1
+    },
+    {
+      "timestamp": 1790000060.0,
+      "label": "EVT_002",
+      "line": "ref",
+      "seq": 2
+    },
+    {
+      "timestamp": 1790000090.0,
+      "label": "EVT_003",
+      "line": "ref",
+      "seq": 3
+    },
+    {
+      "timestamp": 1790000120.0,
+      "label": "EVT_004",
+      "line": "ref",
+      "seq": 4
+    },
+    {
+      "timestamp": 1790000150.0,
+      "label": "EVT_005",
+      "line": "ref",
+      "seq": 5
+    },
+    {
+      "timestamp": 1790000180.0,
+      "label": "EVT_006",
+      "line": "ref",
+      "seq": 6
+    },
+    {
+      "timestamp": 1790000210.0,
+      "label": "EVT_007",
+      "line": "ref",
+      "seq": 7
+    },
+    {
+      "timestamp": 1790000240.0,
+      "label": "EVT_008",
+      "line": "ref",
+      "seq": 8
+    },
+    {
+      "timestamp": 1790000270.0,
+      "label": "EVT_009",
+      "line": "ref",
+      "seq": 9
+    },
+    {
+      "timestamp": 1790000300.0,
+      "label": "EVT_010",
+      "line": "ref",
+      "seq": 10
+    },
+    {
+      "timestamp": 1790000330.0,
+      "label": "EVT_011",
+      "line": "ref",
+      "seq": 11
+    },
+    {
+      "timestamp": 1790000360.0,
+      "label": "EVT_012",
+      "line": "ref",
+      "seq": 12
+    },
+    {
+      "timestamp": 1790000390.0,
+      "label": "EVT_013",
+      "line": "ref",
+      "seq": 13
+    },
+    {
+      "timestamp": 1790000420.0,
+      "label": "EVT_014",
+      "line": "ref",
+      "seq": 14
+    },
+    {
+      "timestamp": 1790000450.0,
+      "label": "EVT_015",
+      "line": "ref",
+      "seq": 15
+    },
+    {
+      "timestamp": 1790000480.0,
+      "label": "EVT_016",
+      "line": "ref",
+      "seq": 16
+    },
+    {
+      "timestamp": 1790000510.0,
+      "label": "EVT_017",
+      "line": "ref",
+      "seq": 17
+    },
+    {
+      "timestamp": 1790000540.0,
+      "label": "EVT_018",
+      "line": "ref",
+      "seq": 18
+    },
+    {
+      "timestamp": 1790000570.0,
+      "label": "EVT_019",
+      "line": "ref",
+      "seq": 19
+    },
+    {
+      "timestamp": 1790000600.0,
+      "label": "EVT_020",
+      "line": "ref",
+      "seq": 20
+    },
+    {
+      "timestamp": 1790000630.0,
+      "label": "EVT_021",
+      "line": "ref",
+      "seq": 21
+    },
+    {
+      "timestamp": 1790000660.0,
+      "label": "EVT_022",
+      "line": "ref",
+      "seq": 22
+    },
+    {
+      "timestamp": 1790000690.0,
+      "label": "EVT_023",
+      "line": "ref",
+      "seq": 23
+    },
+    {
+      "timestamp": 1790000720.0,
+      "label": "EVT_024",
+      "line": "ref",
+      "seq": 24
+    },
+    {
+      "timestamp": 1790000750.0,
+      "label": "EVT_025",
+      "line": "ref",
+      "seq": 25
+    },
+    {
+      "timestamp": 1790000780.0,
+      "label": "EVT_026",
+      "line": "ref",
+      "seq": 26
+    },
+    {
+      "timestamp": 1790000810.0,
+      "label": "EVT_027",
+      "line": "ref",
+      "seq": 27
+    },
+    {
+      "timestamp": 1790000840.0,
+      "label": "EVT_028",
+      "line": "ref",
+      "seq": 28
+    },
+    {
+      "timestamp": 1790000870.0,
+      "label": "EVT_029",
+      "line": "ref",
+      "seq": 29
+    },
+    {
+      "timestamp": 1790000900.0,
+      "label": "EVT_030",
+      "line": "ref",
+      "seq": 30
+    },
+    {
+      "timestamp": 1790000930.0,
+      "label": "EVT_031",
+      "line": "ref",
+      "seq": 31
+    },
+    {
+      "timestamp": 1790000960.0,
+      "label": "EVT_032",
+      "line": "ref",
+      "seq": 32
+    },
+    {
+      "timestamp": 1790000990.0,
+      "label": "EVT_033",
+      "line": "ref",
+      "seq": 33
+    },
+    {
+      "timestamp": 1790001020.0,
+      "label": "EVT_034",
+      "line": "ref",
+      "seq": 34
+    },
+    {
+      "timestamp": 1790001050.0,
+      "label": "EVT_035",
+      "line": "ref",
+      "seq": 35
+    },
+    {
+      "timestamp": 1790001080.0,
+      "label": "EVT_036",
+      "line": "ref",
+      "seq": 36
+    },
+    {
+      "timestamp": 1790001110.0,
+      "label": "EVT_037",
+      "line": "ref",
+      "seq": 37
+    },
+    {
+      "timestamp": 1790001140.0,
+      "label": "EVT_038",
+      "line": "ref",
+      "seq": 38
+    },
+    {
+      "timestamp": 1790001170.0,
+      "label": "EVT_039",
+      "line": "ref",
+      "seq": 39
+    },
+    {
+      "timestamp": 1790001200.0,
+      "label": "EVT_040",
+      "line": "ref",
+      "seq": 40
+    },
+    {
+      "timestamp": 1790001230.0,
+      "label": "EVT_041",
+      "line": "ref",
+      "seq": 41
+    },
+    {
+      "timestamp": 1790001260.0,
+      "label": "EVT_042",
+      "line": "ref",
+      "seq": 42
+    },
+    {
+      "timestamp": 1790001290.0,
+      "label": "EVT_043",
+      "line": "ref",
+      "seq": 43
+    },
+    {
+      "timestamp": 1790001320.0,
+      "label": "EVT_044",
+      "line": "ref",
+      "seq": 44
+    },
+    {
+      "timestamp": 1790001350.0,
+      "label": "EVT_045",
+      "line": "ref",
+      "seq": 45
+    },
+    {
+      "timestamp": 1790001380.0,
+      "label": "EVT_046",
+      "line": "ref",
+      "seq": 46
+    },
+    {
+      "timestamp": 1790001410.0,
+      "label": "EVT_047",
+      "line": "ref",
+      "seq": 47
+    },
+    {
+      "timestamp": 1790001440.0,
+      "label": "EVT_048",
+      "line": "ref",
+      "seq": 48
+    },
+    {
+      "timestamp": 1790001470.0,
+      "label": "EVT_049",
+      "line": "ref",
+      "seq": 49
+    },
+    {
+      "timestamp": 1790001500.0,
+      "label": "EVT_050",
+      "line": "ref",
+      "seq": 50
+    },
+    {
+      "timestamp": 1790001530.0,
+      "label": "EVT_051",
+      "line": "ref",
+      "seq": 51
+    },
+    {
+      "timestamp": 1790001560.0,
+      "label": "EVT_052",
+      "line": "ref",
+      "seq": 52
+    },
+    {
+      "timestamp": 1790001590.0,
+      "label": "EVT_053",
+      "line": "ref",
+      "seq": 53
+    },
+    {
+      "timestamp": 1790001620.0,
+      "label": "EVT_054",
+      "line": "ref",
+      "seq": 54
+    },
+    {
+      "timestamp": 1790001650.0,
+      "label": "EVT_055",
+      "line": "ref",
+      "seq": 55
+    },
+    {
+      "timestamp": 1790001680.0,
+      "label": "EVT_056",
+      "line": "ref",
+      "seq": 56
+    },
+    {
+      "timestamp": 1790001710.0,
+      "label": "EVT_057",
+      "line": "ref",
+      "seq": 57
+    },
+    {
+      "timestamp": 1790001740.0,
+      "label": "EVT_058",
+      "line": "ref",
+      "seq": 58
+    },
+    {
+      "timestamp": 1790001770.0,
+      "label": "EVT_059",
+      "line": "ref",
+      "seq": 59
+    }
+  ],
+  "targets": [
+    {
+      "name": "line-a",
+      "target": [
+        {
+          "timestamp": 1790000005.0,
+          "label": "EVT_000",
+          "seq": 0
+        },
+        {
+          "timestamp": 1790000035.0,
+          "label": "EVT_001",
+          "seq": 1
+        },
+        {
+          "timestamp": 1790000065.0,
+          "label": "EVT_002",
+          "seq": 2
+        },
+        {
+          "timestamp": 1790000095.0,
+          "label": "EVT_003",
+          "seq": 3
+        },
+        {
+          "timestamp": 1790000125.0,
+          "label": "EVT_004",
+          "seq": 4
+        },
+        {
+          "timestamp": 1790000155.0,
+          "label": "EVT_005",
+          "seq": 5
+        },
+        {
+          "timestamp": 1790000185.0,
+          "label": "EVT_006",
+          "seq": 6
+        },
+        {
+          "timestamp": 1790000215.0,
+          "label": "EVT_007",
+          "seq": 7
+        },
+        {
+          "timestamp": 1790000245.0,
+          "label": "EVT_008",
+          "seq": 8
+        },
+        {
+          "timestamp": 1790000275.0,
+          "label": "EVT_009",
+          "seq": 9
+        },
+        {
+          "timestamp": 1790000305.0,
+          "label": "EVT_010",
+          "seq": 10
+        },
+        {
+          "timestamp": 1790000335.0,
+          "label": "EVT_011",
+          "seq": 11
+        },
+        {
+          "timestamp": 1790000365.0,
+          "label": "EVT_012",
+          "seq": 12
+        },
+        {
+          "timestamp": 1790000395.0,
+          "label": "EVT_013",
+          "seq": 13
+        },
+        {
+          "timestamp": 1790000425.0,
+          "label": "EVT_014",
+          "seq": 14
+        },
+        {
+          "timestamp": 1790000455.0,
+          "label": "EVT_015",
+          "seq": 15
+        },
+        {
+          "timestamp": 1790000485.0,
+          "label": "EVT_016",
+          "seq": 16
+        },
+        {
+          "timestamp": 1790000515.0,
+          "label": "EVT_017",
+          "seq": 17
+        },
+        {
+          "timestamp": 1790000545.0,
+          "label": "EVT_018",
+          "seq": 18
+        },
+        {
+          "timestamp": 1790000575.0,
+          "label": "EVT_019",
+          "seq": 19
+        },
+        {
+          "timestamp": 1790000605.0,
+          "label": "EVT_020",
+          "seq": 20
+        },
+        {
+          "timestamp": 1790000635.0,
+          "label": "EVT_021",
+          "seq": 21
+        },
+        {
+          "timestamp": 1790000665.0,
+          "label": "EVT_022",
+          "seq": 22
+        },
+        {
+          "timestamp": 1790000695.0,
+          "label": "EVT_023",
+          "seq": 23
+        },
+        {
+          "timestamp": 1790000725.0,
+          "label": "EVT_024",
+          "seq": 24
+        },
+        {
+          "timestamp": 1790000755.0,
+          "label": "EVT_025",
+          "seq": 25
+        },
+        {
+          "timestamp": 1790000785.0,
+          "label": "EVT_026",
+          "seq": 26
+        },
+        {
+          "timestamp": 1790000815.0,
+          "label": "EVT_027",
+          "seq": 27
+        },
+        {
+          "timestamp": 1790000845.0,
+          "label": "EVT_028",
+          "seq": 28
+        },
+        {
+          "timestamp": 1790000875.0,
+          "label": "EVT_029",
+          "seq": 29
+        },
+        {
+          "timestamp": 1790000905.0,
+          "label": "EVT_030",
+          "seq": 30
+        },
+        {
+          "timestamp": 1790000935.0,
+          "label": "EVT_031",
+          "seq": 31
+        },
+        {
+          "timestamp": 1790000965.0,
+          "label": "EVT_032",
+          "seq": 32
+        },
+        {
+          "timestamp": 1790000995.0,
+          "label": "EVT_033",
+          "seq": 33
+        },
+        {
+          "timestamp": 1790001025.0,
+          "label": "EVT_034",
+          "seq": 34
+        },
+        {
+          "timestamp": 1790001055.0,
+          "label": "EVT_035",
+          "seq": 35
+        },
+        {
+          "timestamp": 1790001085.0,
+          "label": "EVT_036",
+          "seq": 36
+        },
+        {
+          "timestamp": 1790001115.0,
+          "label": "EVT_037",
+          "seq": 37
+        },
+        {
+          "timestamp": 1790001145.0,
+          "label": "EVT_038",
+          "seq": 38
+        },
+        {
+          "timestamp": 1790001175.0,
+          "label": "EVT_039",
+          "seq": 39
+        },
+        {
+          "timestamp": 1790001205.0,
+          "label": "EVT_040",
+          "seq": 40
+        },
+        {
+          "timestamp": 1790001235.0,
+          "label": "EVT_041",
+          "seq": 41
+        },
+        {
+          "timestamp": 1790001265.0,
+          "label": "EVT_042",
+          "seq": 42
+        },
+        {
+          "timestamp": 1790001295.0,
+          "label": "EVT_043",
+          "seq": 43
+        },
+        {
+          "timestamp": 1790001325.0,
+          "label": "EVT_044",
+          "seq": 44
+        },
+        {
+          "timestamp": 1790001355.0,
+          "label": "EVT_045",
+          "seq": 45
+        },
+        {
+          "timestamp": 1790001385.0,
+          "label": "EVT_046",
+          "seq": 46
+        },
+        {
+          "timestamp": 1790001415.0,
+          "label": "EVT_047",
+          "seq": 47
+        },
+        {
+          "timestamp": 1790001445.0,
+          "label": "EVT_048",
+          "seq": 48
+        },
+        {
+          "timestamp": 1790001475.0,
+          "label": "EVT_049",
+          "seq": 49
+        },
+        {
+          "timestamp": 1790001505.0,
+          "label": "EVT_050",
+          "seq": 50
+        },
+        {
+          "timestamp": 1790001535.0,
+          "label": "EVT_051",
+          "seq": 51
+        },
+        {
+          "timestamp": 1790001565.0,
+          "label": "EVT_052",
+          "seq": 52
+        },
+        {
+          "timestamp": 1790001595.0,
+          "label": "EVT_053",
+          "seq": 53
+        },
+        {
+          "timestamp": 1790001625.0,
+          "label": "EVT_054",
+          "seq": 54
+        },
+        {
+          "timestamp": 1790001655.0,
+          "label": "EVT_055",
+          "seq": 55
+        },
+        {
+          "timestamp": 1790001685.0,
+          "label": "EVT_056",
+          "seq": 56
+        },
+        {
+          "timestamp": 1790001715.0,
+          "label": "EVT_057",
+          "seq": 57
+        },
+        {
+          "timestamp": 1790001745.0,
+          "label": "EVT_058",
+          "seq": 58
+        },
+        {
+          "timestamp": 1790001775.0,
+          "label": "EVT_059",
+          "seq": 59
+        }
+      ]
+    },
+    {
+      "name": "line-b",
+      "target": [
+        {
+          "timestamp": 1790000005.01,
+          "label": "EVT_000",
+          "seq": 0
+        },
+        {
+          "timestamp": 1790000035.01,
+          "label": "EVT_001",
+          "seq": 1
+        },
+        {
+          "timestamp": 1790000065.01,
+          "label": "EVT_002",
+          "seq": 2
+        },
+        {
+          "timestamp": 1790000095.01,
+          "label": "EVT_003",
+          "seq": 3
+        },
+        {
+          "timestamp": 1790000125.01,
+          "label": "EVT_004",
+          "seq": 4
+        },
+        {
+          "timestamp": 1790000155.01,
+          "label": "EVT_005",
+          "seq": 5
+        },
+        {
+          "timestamp": 1790000185.01,
+          "label": "EVT_006",
+          "seq": 6
+        },
+        {
+          "timestamp": 1790000215.01,
+          "label": "EVT_007",
+          "seq": 7
+        },
+        {
+          "timestamp": 1790000245.01,
+          "label": "EVT_008",
+          "seq": 8
+        },
+        {
+          "timestamp": 1790000275.01,
+          "label": "EVT_009",
+          "seq": 9
+        },
+        {
+          "timestamp": 1790000305.01,
+          "label": "EVT_010",
+          "seq": 10
+        },
+        {
+          "timestamp": 1790000335.01,
+          "label": "EVT_011",
+          "seq": 11
+        },
+        {
+          "timestamp": 1790000365.01,
+          "label": "EVT_012",
+          "seq": 12
+        },
+        {
+          "timestamp": 1790000395.01,
+          "label": "EVT_013",
+          "seq": 13
+        },
+        {
+          "timestamp": 1790000425.01,
+          "label": "EVT_014",
+          "seq": 14
+        },
+        {
+          "timestamp": 1790000455.01,
+          "label": "EVT_015",
+          "seq": 15
+        },
+        {
+          "timestamp": 1790000485.01,
+          "label": "EVT_016",
+          "seq": 16
+        },
+        {
+          "timestamp": 1790000515.01,
+          "label": "EVT_017",
+          "seq": 17
+        },
+        {
+          "timestamp": 1790000545.01,
+          "label": "EVT_018",
+          "seq": 18
+        },
+        {
+          "timestamp": 1790000575.01,
+          "label": "EVT_019",
+          "seq": 19
+        },
+        {
+          "timestamp": 1790000605.01,
+          "label": "EVT_020",
+          "seq": 20
+        },
+        {
+          "timestamp": 1790000635.01,
+          "label": "EVT_021",
+          "seq": 21
+        },
+        {
+          "timestamp": 1790000665.01,
+          "label": "EVT_022",
+          "seq": 22
+        },
+        {
+          "timestamp": 1790000695.01,
+          "label": "EVT_023",
+          "seq": 23
+        },
+        {
+          "timestamp": 1790000725.01,
+          "label": "EVT_024",
+          "seq": 24
+        },
+        {
+          "timestamp": 1790000755.01,
+          "label": "EVT_025",
+          "seq": 25
+        },
+        {
+          "timestamp": 1790000785.01,
+          "label": "EVT_026",
+          "seq": 26
+        },
+        {
+          "timestamp": 1790000815.01,
+          "label": "EVT_027",
+          "seq": 27
+        },
+        {
+          "timestamp": 1790000845.01,
+          "label": "EVT_028",
+          "seq": 28
+        },
+        {
+          "timestamp": 1790000875.01,
+          "label": "EVT_029",
+          "seq": 29
+        },
+        {
+          "timestamp": 1790000905.01,
+          "label": "EVT_030",
+          "seq": 30
+        },
+        {
+          "timestamp": 1790000935.01,
+          "label": "EVT_031",
+          "seq": 31
+        },
+        {
+          "timestamp": 1790000965.01,
+          "label": "EVT_032",
+          "seq": 32
+        },
+        {
+          "timestamp": 1790000995.01,
+          "label": "EVT_033",
+          "seq": 33
+        },
+        {
+          "timestamp": 1790001025.01,
+          "label": "EVT_034",
+          "seq": 34
+        },
+        {
+          "timestamp": 1790001055.01,
+          "label": "EVT_035",
+          "seq": 35
+        },
+        {
+          "timestamp": 1790001085.01,
+          "label": "EVT_036",
+          "seq": 36
+        },
+        {
+          "timestamp": 1790001115.01,
+          "label": "EVT_037",
+          "seq": 37
+        },
+        {
+          "timestamp": 1790001145.01,
+          "label": "EVT_038",
+          "seq": 38
+        },
+        {
+          "timestamp": 1790001175.01,
+          "label": "EVT_039",
+          "seq": 39
+        },
+        {
+          "timestamp": 1790001205.01,
+          "label": "EVT_040",
+          "seq": 40
+        },
+        {
+          "timestamp": 1790001235.01,
+          "label": "EVT_041",
+          "seq": 41
+        },
+        {
+          "timestamp": 1790001265.01,
+          "label": "EVT_042",
+          "seq": 42
+        },
+        {
+          "timestamp": 1790001295.01,
+          "label": "EVT_043",
+          "seq": 43
+        },
+        {
+          "timestamp": 1790001325.01,
+          "label": "EVT_044",
+          "seq": 44
+        },
+        {
+          "timestamp": 1790001355.01,
+          "label": "EVT_045",
+          "seq": 45
+        },
+        {
+          "timestamp": 1790001385.01,
+          "label": "EVT_046",
+          "seq": 46
+        },
+        {
+          "timestamp": 1790001415.01,
+          "label": "EVT_047",
+          "seq": 47
+        },
+        {
+          "timestamp": 1790001445.01,
+          "label": "EVT_048",
+          "seq": 48
+        },
+        {
+          "timestamp": 1790001475.01,
+          "label": "EVT_049",
+          "seq": 49
+        },
+        {
+          "timestamp": 1790001505.01,
+          "label": "EVT_050",
+          "seq": 50
+        },
+        {
+          "timestamp": 1790001535.01,
+          "label": "EVT_051",
+          "seq": 51
+        },
+        {
+          "timestamp": 1790001565.01,
+          "label": "EVT_052",
+          "seq": 52
+        },
+        {
+          "timestamp": 1790001595.01,
+          "label": "EVT_053",
+          "seq": 53
+        },
+        {
+          "timestamp": 1790001625.01,
+          "label": "EVT_054",
+          "seq": 54
+        },
+        {
+          "timestamp": 1790001655.01,
+          "label": "EVT_055",
+          "seq": 55
+        },
+        {
+          "timestamp": 1790001685.01,
+          "label": "EVT_056",
+          "seq": 56
+        },
+        {
+          "timestamp": 1790001715.01,
+          "label": "EVT_057",
+          "seq": 57
+        },
+        {
+          "timestamp": 1790001745.01,
+          "label": "EVT_058",
+          "seq": 58
+        },
+        {
+          "timestamp": 1790001775.01,
+          "label": "EVT_059",
+          "seq": 59
+        }
+      ]
+    },
+    {
+      "name": "line-c",
+      "target": [
+        {
+          "timestamp": 1790000004.99,
+          "label": "EVT_000",
+          "seq": 0
+        },
+        {
+          "timestamp": 1790000034.99,
+          "label": "EVT_001",
+          "seq": 1
+        },
+        {
+          "timestamp": 1790000064.99,
+          "label": "EVT_002",
+          "seq": 2
+        },
+        {
+          "timestamp": 1790000094.99,
+          "label": "EVT_003",
+          "seq": 3
+        },
+        {
+          "timestamp": 1790000124.99,
+          "label": "EVT_004",
+          "seq": 4
+        },
+        {
+          "timestamp": 1790000154.99,
+          "label": "EVT_005",
+          "seq": 5
+        },
+        {
+          "timestamp": 1790000184.99,
+          "label": "EVT_006",
+          "seq": 6
+        },
+        {
+          "timestamp": 1790000214.99,
+          "label": "EVT_007",
+          "seq": 7
+        },
+        {
+          "timestamp": 1790000244.99,
+          "label": "EVT_008",
+          "seq": 8
+        },
+        {
+          "timestamp": 1790000274.99,
+          "label": "EVT_009",
+          "seq": 9
+        },
+        {
+          "timestamp": 1790000304.99,
+          "label": "EVT_010",
+          "seq": 10
+        },
+        {
+          "timestamp": 1790000334.99,
+          "label": "EVT_011",
+          "seq": 11
+        },
+        {
+          "timestamp": 1790000364.99,
+          "label": "EVT_012",
+          "seq": 12
+        },
+        {
+          "timestamp": 1790000394.99,
+          "label": "EVT_013",
+          "seq": 13
+        },
+        {
+          "timestamp": 1790000424.99,
+          "label": "EVT_014",
+          "seq": 14
+        },
+        {
+          "timestamp": 1790000454.99,
+          "label": "EVT_015",
+          "seq": 15
+        },
+        {
+          "timestamp": 1790000484.99,
+          "label": "EVT_016",
+          "seq": 16
+        },
+        {
+          "timestamp": 1790000514.99,
+          "label": "EVT_017",
+          "seq": 17
+        },
+        {
+          "timestamp": 1790000544.99,
+          "label": "EVT_018",
+          "seq": 18
+        },
+        {
+          "timestamp": 1790000574.99,
+          "label": "EVT_019",
+          "seq": 19
+        },
+        {
+          "timestamp": 1790000604.99,
+          "label": "EVT_020",
+          "seq": 20
+        },
+        {
+          "timestamp": 1790000634.99,
+          "label": "EVT_021",
+          "seq": 21
+        },
+        {
+          "timestamp": 1790000664.99,
+          "label": "EVT_022",
+          "seq": 22
+        },
+        {
+          "timestamp": 1790000694.99,
+          "label": "EVT_023",
+          "seq": 23
+        },
+        {
+          "timestamp": 1790000724.99,
+          "label": "EVT_024",
+          "seq": 24
+        },
+        {
+          "timestamp": 1790000754.99,
+          "label": "EVT_025",
+          "seq": 25
+        },
+        {
+          "timestamp": 1790000784.99,
+          "label": "EVT_026",
+          "seq": 26
+        },
+        {
+          "timestamp": 1790000814.99,
+          "label": "EVT_027",
+          "seq": 27
+        },
+        {
+          "timestamp": 1790000844.99,
+          "label": "EVT_028",
+          "seq": 28
+        },
+        {
+          "timestamp": 1790000874.99,
+          "label": "EVT_029",
+          "seq": 29
+        },
+        {
+          "timestamp": 1790000904.99,
+          "label": "EVT_030",
+          "seq": 30
+        },
+        {
+          "timestamp": 1790000934.99,
+          "label": "EVT_031",
+          "seq": 31
+        },
+        {
+          "timestamp": 1790000964.99,
+          "label": "EVT_032",
+          "seq": 32
+        },
+        {
+          "timestamp": 1790000994.99,
+          "label": "EVT_033",
+          "seq": 33
+        },
+        {
+          "timestamp": 1790001024.99,
+          "label": "EVT_034",
+          "seq": 34
+        },
+        {
+          "timestamp": 1790001054.99,
+          "label": "EVT_035",
+          "seq": 35
+        },
+        {
+          "timestamp": 1790001084.99,
+          "label": "EVT_036",
+          "seq": 36
+        },
+        {
+          "timestamp": 1790001114.99,
+          "label": "EVT_037",
+          "seq": 37
+        },
+        {
+          "timestamp": 1790001144.99,
+          "label": "EVT_038",
+          "seq": 38
+        },
+        {
+          "timestamp": 1790001174.99,
+          "label": "EVT_039",
+          "seq": 39
+        },
+        {
+          "timestamp": 1790001204.99,
+          "label": "EVT_040",
+          "seq": 40
+        },
+        {
+          "timestamp": 1790001234.99,
+          "label": "EVT_041",
+          "seq": 41
+        },
+        {
+          "timestamp": 1790001264.99,
+          "label": "EVT_042",
+          "seq": 42
+        },
+        {
+          "timestamp": 1790001294.99,
+          "label": "EVT_043",
+          "seq": 43
+        },
+        {
+          "timestamp": 1790001324.99,
+          "label": "EVT_044",
+          "seq": 44
+        },
+        {
+          "timestamp": 1790001354.99,
+          "label": "EVT_045",
+          "seq": 45
+        },
+        {
+          "timestamp": 1790001384.99,
+          "label": "EVT_046",
+          "seq": 46
+        },
+        {
+          "timestamp": 1790001414.99,
+          "label": "EVT_047",
+          "seq": 47
+        },
+        {
+          "timestamp": 1790001444.99,
+          "label": "EVT_048",
+          "seq": 48
+        },
+        {
+          "timestamp": 1790001474.99,
+          "label": "EVT_049",
+          "seq": 49
+        },
+        {
+          "timestamp": 1790001504.99,
+          "label": "EVT_050",
+          "seq": 50
+        },
+        {
+          "timestamp": 1790001534.99,
+          "label": "EVT_051",
+          "seq": 51
+        },
+        {
+          "timestamp": 1790001564.99,
+          "label": "EVT_052",
+          "seq": 52
+        },
+        {
+          "timestamp": 1790001594.99,
+          "label": "EVT_053",
+          "seq": 53
+        },
+        {
+          "timestamp": 1790001624.99,
+          "label": "EVT_054",
+          "seq": 54
+        },
+        {
+          "timestamp": 1790001654.99,
+          "label": "EVT_055",
+          "seq": 55
+        },
+        {
+          "timestamp": 1790001684.99,
+          "label": "EVT_056",
+          "seq": 56
+        },
+        {
+          "timestamp": 1790001714.99,
+          "label": "EVT_057",
+          "seq": 57
+        },
+        {
+          "timestamp": 1790001744.99,
+          "label": "EVT_058",
+          "seq": 58
+        },
+        {
+          "timestamp": 1790001774.99,
+          "label": "EVT_059",
+          "seq": 59
+        }
+      ]
+    },
+    {
+      "name": "line-d",
+      "target": [
+        {
+          "timestamp": 1790000020.0,
+          "label": "EVT_000",
+          "seq": 0
+        },
+        {
+          "timestamp": 1790000035.0,
+          "label": "EVT_001",
+          "seq": 1
+        },
+        {
+          "timestamp": 1790000065.0,
+          "label": "EVT_002",
+          "seq": 2
+        },
+        {
+          "timestamp": 1790000110.0,
+          "label": "EVT_003",
+          "seq": 3
+        },
+        {
+          "timestamp": 1790000125.0,
+          "label": "EVT_004",
+          "seq": 4
+        },
+        {
+          "timestamp": 1790000155.0,
+          "label": "EVT_005",
+          "seq": 5
+        },
+        {
+          "timestamp": 1790000200.0,
+          "label": "EVT_006",
+          "seq": 6
+        },
+        {
+          "timestamp": 1790000215.0,
+          "label": "EVT_007",
+          "seq": 7
+        },
+        {
+          "timestamp": 1790000245.0,
+          "label": "EVT_008",
+          "seq": 8
+        },
+        {
+          "timestamp": 1790000290.0,
+          "label": "EVT_009",
+          "seq": 9
+        },
+        {
+          "timestamp": 1790000305.0,
+          "label": "EVT_010",
+          "seq": 10
+        },
+        {
+          "timestamp": 1790000335.0,
+          "label": "EVT_011",
+          "seq": 11
+        },
+        {
+          "timestamp": 1790000380.0,
+          "label": "EVT_012",
+          "seq": 12
+        },
+        {
+          "timestamp": 1790000395.0,
+          "label": "EVT_013",
+          "seq": 13
+        },
+        {
+          "timestamp": 1790000425.0,
+          "label": "EVT_014",
+          "seq": 14
+        },
+        {
+          "timestamp": 1790000470.0,
+          "label": "EVT_015",
+          "seq": 15
+        },
+        {
+          "timestamp": 1790000485.0,
+          "label": "EVT_016",
+          "seq": 16
+        },
+        {
+          "timestamp": 1790000515.0,
+          "label": "EVT_017",
+          "seq": 17
+        },
+        {
+          "timestamp": 1790000560.0,
+          "label": "EVT_018",
+          "seq": 18
+        },
+        {
+          "timestamp": 1790000575.0,
+          "label": "EVT_019",
+          "seq": 19
+        },
+        {
+          "timestamp": 1790000605.0,
+          "label": "EVT_020",
+          "seq": 20
+        },
+        {
+          "timestamp": 1790000650.0,
+          "label": "EVT_021",
+          "seq": 21
+        },
+        {
+          "timestamp": 1790000665.0,
+          "label": "EVT_022",
+          "seq": 22
+        },
+        {
+          "timestamp": 1790000695.0,
+          "label": "EVT_023",
+          "seq": 23
+        },
+        {
+          "timestamp": 1790000740.0,
+          "label": "EVT_024",
+          "seq": 24
+        },
+        {
+          "timestamp": 1790000755.0,
+          "label": "EVT_025",
+          "seq": 25
+        },
+        {
+          "timestamp": 1790000785.0,
+          "label": "EVT_026",
+          "seq": 26
+        },
+        {
+          "timestamp": 1790000830.0,
+          "label": "EVT_027",
+          "seq": 27
+        },
+        {
+          "timestamp": 1790000845.0,
+          "label": "EVT_028",
+          "seq": 28
+        },
+        {
+          "timestamp": 1790000875.0,
+          "label": "EVT_029",
+          "seq": 29
+        },
+        {
+          "timestamp": 1790000920.0,
+          "label": "EVT_030",
+          "seq": 30
+        },
+        {
+          "timestamp": 1790000935.0,
+          "label": "EVT_031",
+          "seq": 31
+        },
+        {
+          "timestamp": 1790000965.0,
+          "label": "EVT_032",
+          "seq": 32
+        },
+        {
+          "timestamp": 1790001010.0,
+          "label": "EVT_033",
+          "seq": 33
+        },
+        {
+          "timestamp": 1790001025.0,
+          "label": "EVT_034",
+          "seq": 34
+        },
+        {
+          "timestamp": 1790001055.0,
+          "label": "EVT_035",
+          "seq": 35
+        },
+        {
+          "timestamp": 1790001100.0,
+          "label": "EVT_036",
+          "seq": 36
+        },
+        {
+          "timestamp": 1790001115.0,
+          "label": "EVT_037",
+          "seq": 37
+        },
+        {
+          "timestamp": 1790001145.0,
+          "label": "EVT_038",
+          "seq": 38
+        },
+        {
+          "timestamp": 1790001190.0,
+          "label": "EVT_039",
+          "seq": 39
+        },
+        {
+          "timestamp": 1790001205.0,
+          "label": "EVT_040",
+          "seq": 40
+        },
+        {
+          "timestamp": 1790001235.0,
+          "label": "EVT_041",
+          "seq": 41
+        },
+        {
+          "timestamp": 1790001280.0,
+          "label": "EVT_042",
+          "seq": 42
+        },
+        {
+          "timestamp": 1790001295.0,
+          "label": "EVT_043",
+          "seq": 43
+        },
+        {
+          "timestamp": 1790001325.0,
+          "label": "EVT_044",
+          "seq": 44
+        },
+        {
+          "timestamp": 1790001370.0,
+          "label": "EVT_045",
+          "seq": 45
+        },
+        {
+          "timestamp": 1790001385.0,
+          "label": "EVT_046",
+          "seq": 46
+        },
+        {
+          "timestamp": 1790001415.0,
+          "label": "EVT_047",
+          "seq": 47
+        },
+        {
+          "timestamp": 1790001460.0,
+          "label": "EVT_048",
+          "seq": 48
+        },
+        {
+          "timestamp": 1790001475.0,
+          "label": "EVT_049",
+          "seq": 49
+        },
+        {
+          "timestamp": 1790001505.0,
+          "label": "EVT_050",
+          "seq": 50
+        },
+        {
+          "timestamp": 1790001550.0,
+          "label": "EVT_051",
+          "seq": 51
+        },
+        {
+          "timestamp": 1790001565.0,
+          "label": "EVT_052",
+          "seq": 52
+        },
+        {
+          "timestamp": 1790001595.0,
+          "label": "EVT_053",
+          "seq": 53
+        },
+        {
+          "timestamp": 1790001640.0,
+          "label": "EVT_054",
+          "seq": 54
+        },
+        {
+          "timestamp": 1790001655.0,
+          "label": "EVT_055",
+          "seq": 55
+        },
+        {
+          "timestamp": 1790001685.0,
+          "label": "EVT_056",
+          "seq": 56
+        },
+        {
+          "timestamp": 1790001730.0,
+          "label": "EVT_057",
+          "seq": 57
+        },
+        {
+          "timestamp": 1790001745.0,
+          "label": "EVT_058",
+          "seq": 58
+        },
+        {
+          "timestamp": 1790001775.0,
+          "label": "EVT_059",
+          "seq": 59
+        }
+      ]
+    },
+    {
+      "name": "line-e",
+      "target": [
+        {
+          "timestamp": 1790000005.0,
+          "label": "EVT_000",
+          "seq": 0
+        },
+        {
+          "timestamp": 1790000035.0,
+          "label": "UNKNOWN_001",
+          "seq": 1
+        },
+        {
+          "timestamp": 1790000065.0,
+          "label": "EVT_002",
+          "seq": 2
+        },
+        {
+          "timestamp": 1790000095.0,
+          "label": "UNKNOWN_003",
+          "seq": 3
+        },
+        {
+          "timestamp": 1790000125.0,
+          "label": "EVT_004",
+          "seq": 4
+        },
+        {
+          "timestamp": 1790000155.0,
+          "label": "UNKNOWN_005",
+          "seq": 5
+        },
+        {
+          "timestamp": 1790000185.0,
+          "label": "EVT_006",
+          "seq": 6
+        },
+        {
+          "timestamp": 1790000215.0,
+          "label": "UNKNOWN_007",
+          "seq": 7
+        },
+        {
+          "timestamp": 1790000245.0,
+          "label": "EVT_008",
+          "seq": 8
+        },
+        {
+          "timestamp": 1790000275.0,
+          "label": "UNKNOWN_009",
+          "seq": 9
+        },
+        {
+          "timestamp": 1790000305.0,
+          "label": "EVT_010",
+          "seq": 10
+        },
+        {
+          "timestamp": 1790000335.0,
+          "label": "UNKNOWN_011",
+          "seq": 11
+        },
+        {
+          "timestamp": 1790000365.0,
+          "label": "EVT_012",
+          "seq": 12
+        },
+        {
+          "timestamp": 1790000395.0,
+          "label": "UNKNOWN_013",
+          "seq": 13
+        },
+        {
+          "timestamp": 1790000425.0,
+          "label": "EVT_014",
+          "seq": 14
+        },
+        {
+          "timestamp": 1790000455.0,
+          "label": "UNKNOWN_015",
+          "seq": 15
+        },
+        {
+          "timestamp": 1790000485.0,
+          "label": "EVT_016",
+          "seq": 16
+        },
+        {
+          "timestamp": 1790000515.0,
+          "label": "UNKNOWN_017",
+          "seq": 17
+        },
+        {
+          "timestamp": 1790000545.0,
+          "label": "EVT_018",
+          "seq": 18
+        },
+        {
+          "timestamp": 1790000575.0,
+          "label": "UNKNOWN_019",
+          "seq": 19
+        },
+        {
+          "timestamp": 1790000605.0,
+          "label": "EVT_020",
+          "seq": 20
+        },
+        {
+          "timestamp": 1790000635.0,
+          "label": "UNKNOWN_021",
+          "seq": 21
+        },
+        {
+          "timestamp": 1790000665.0,
+          "label": "EVT_022",
+          "seq": 22
+        },
+        {
+          "timestamp": 1790000695.0,
+          "label": "UNKNOWN_023",
+          "seq": 23
+        },
+        {
+          "timestamp": 1790000725.0,
+          "label": "EVT_024",
+          "seq": 24
+        },
+        {
+          "timestamp": 1790000755.0,
+          "label": "UNKNOWN_025",
+          "seq": 25
+        },
+        {
+          "timestamp": 1790000785.0,
+          "label": "EVT_026",
+          "seq": 26
+        },
+        {
+          "timestamp": 1790000815.0,
+          "label": "UNKNOWN_027",
+          "seq": 27
+        },
+        {
+          "timestamp": 1790000845.0,
+          "label": "EVT_028",
+          "seq": 28
+        },
+        {
+          "timestamp": 1790000875.0,
+          "label": "UNKNOWN_029",
+          "seq": 29
+        },
+        {
+          "timestamp": 1790000905.0,
+          "label": "EVT_030",
+          "seq": 30
+        },
+        {
+          "timestamp": 1790000935.0,
+          "label": "UNKNOWN_031",
+          "seq": 31
+        },
+        {
+          "timestamp": 1790000965.0,
+          "label": "EVT_032",
+          "seq": 32
+        },
+        {
+          "timestamp": 1790000995.0,
+          "label": "UNKNOWN_033",
+          "seq": 33
+        },
+        {
+          "timestamp": 1790001025.0,
+          "label": "EVT_034",
+          "seq": 34
+        },
+        {
+          "timestamp": 1790001055.0,
+          "label": "UNKNOWN_035",
+          "seq": 35
+        },
+        {
+          "timestamp": 1790001085.0,
+          "label": "EVT_036",
+          "seq": 36
+        },
+        {
+          "timestamp": 1790001115.0,
+          "label": "UNKNOWN_037",
+          "seq": 37
+        },
+        {
+          "timestamp": 1790001145.0,
+          "label": "EVT_038",
+          "seq": 38
+        },
+        {
+          "timestamp": 1790001175.0,
+          "label": "UNKNOWN_039",
+          "seq": 39
+        },
+        {
+          "timestamp": 1790001205.0,
+          "label": "EVT_040",
+          "seq": 40
+        },
+        {
+          "timestamp": 1790001235.0,
+          "label": "UNKNOWN_041",
+          "seq": 41
+        },
+        {
+          "timestamp": 1790001265.0,
+          "label": "EVT_042",
+          "seq": 42
+        },
+        {
+          "timestamp": 1790001295.0,
+          "label": "UNKNOWN_043",
+          "seq": 43
+        },
+        {
+          "timestamp": 1790001325.0,
+          "label": "EVT_044",
+          "seq": 44
+        },
+        {
+          "timestamp": 1790001355.0,
+          "label": "UNKNOWN_045",
+          "seq": 45
+        },
+        {
+          "timestamp": 1790001385.0,
+          "label": "EVT_046",
+          "seq": 46
+        },
+        {
+          "timestamp": 1790001415.0,
+          "label": "UNKNOWN_047",
+          "seq": 47
+        },
+        {
+          "timestamp": 1790001445.0,
+          "label": "EVT_048",
+          "seq": 48
+        },
+        {
+          "timestamp": 1790001475.0,
+          "label": "UNKNOWN_049",
+          "seq": 49
+        },
+        {
+          "timestamp": 1790001505.0,
+          "label": "EVT_050",
+          "seq": 50
+        },
+        {
+          "timestamp": 1790001535.0,
+          "label": "UNKNOWN_051",
+          "seq": 51
+        },
+        {
+          "timestamp": 1790001565.0,
+          "label": "EVT_052",
+          "seq": 52
+        },
+        {
+          "timestamp": 1790001595.0,
+          "label": "UNKNOWN_053",
+          "seq": 53
+        },
+        {
+          "timestamp": 1790001625.0,
+          "label": "EVT_054",
+          "seq": 54
+        },
+        {
+          "timestamp": 1790001655.0,
+          "label": "UNKNOWN_055",
+          "seq": 55
+        },
+        {
+          "timestamp": 1790001685.0,
+          "label": "EVT_056",
+          "seq": 56
+        },
+        {
+          "timestamp": 1790001715.0,
+          "label": "UNKNOWN_057",
+          "seq": 57
+        },
+        {
+          "timestamp": 1790001745.0,
+          "label": "EVT_058",
+          "seq": 58
+        },
+        {
+          "timestamp": 1790001775.0,
+          "label": "UNKNOWN_059",
+          "seq": 59
+        }
+      ]
+    }
+  ]
+}

@@ -309,26 +309,31 @@ def test_manual_anchors_locked_and_segmented():
 
     by_pair = {(a["reference_index"], a["target_index"]): a
                for a in res["anchors"]}
-    for ri, ti in ANCHORS:
-        a = by_pair[(ri, ti)]
+    for lock in ANCHORS:
+        a = by_pair[(lock["reference_index"], lock["target_index"])]
         assert a["source"] == "manual"
         assert a["confidence"] == 1.0
 
     # Automatic matches never reuse a locked event or cross a lock.
     auto = [(a["reference_index"], a["target_index"])
             for a in res["anchors"] if a["source"] == "auto"]
-    locked_r = {ri for ri, _ in ANCHORS}
-    locked_t = {ti for _, ti in ANCHORS}
+    locked = {(lock["reference_index"], lock["target_index"])
+              for lock in ANCHORS}
+    locked_r = {ri for ri, _ in locked}
+    locked_t = {ti for _, ti in locked}
     assert all(ri not in locked_r and ti not in locked_t for ri, ti in auto)
-    ordered_locks = sorted(ANCHORS, key=lambda x: x["reference_index"])
+    ordered_locks = sorted(
+        ((lock["reference_index"], lock["target_index"]) for lock in ANCHORS),
+        key=lambda p: p[0],
+    )
     for ri, ti in auto:
         for left, right in zip(ordered_locks, ordered_locks[1:]):
-            if left["reference_index"] < ri < right["reference_index"]:
-                assert left["target_index"] < ti < right["target_index"]
-        if ri > ordered_locks[-1]["reference_index"]:
-            assert ti > ordered_locks[-1]["target_index"]
-        if ri < ordered_locks[0]["reference_index"]:
-            assert ti < ordered_locks[0]["target_index"]
+            if left[0] < ri < right[0]:
+                assert left[1] < ti < right[1]
+        if ri > ordered_locks[-1][0]:
+            assert ti > ordered_locks[-1][1]
+        if ri < ordered_locks[0][0]:
+            assert ti < ordered_locks[0][1]
 
     # The merged piecewise map passes through every lock.
     for a in res["anchors"]:

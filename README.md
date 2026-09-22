@@ -14,14 +14,16 @@
 
 ```
 app/
-  main.py       FastAPI 路由(POST /align、GET /health)
+  main.py       FastAPI 路由(POST /align、POST /align/batch、GET /health)
+  batch.py      批量质量评估:稳健中位数/MAD z 分数、异常判定与排名
   matching.py   单调 DP 匹配 + 分段线性时钟映射
   io.py         JSONL 解析与结果装配
   timeutil.py   时间戳解析(秒/毫秒/微秒/ISO-8601)与格式化
   models.py     内部数据结构
-examples/       示例 JSONL(含漂移、跳变、缺失与插入)
+examples/       示例 JSONL(含漂移、跳变、缺失与插入)、批量请求示例
 scripts/
-  make_examples.py  生成示例数据
+  make_examples.py        生成单对对齐示例数据
+  make_batch_example.py   生成 /align/batch 批量请求示例
 tests/          pytest 测试(算法 + HTTP 层)
 Dockerfile
 docker-compose.yml
@@ -29,11 +31,33 @@ docker-compose.yml
 
 ## 一键启动(Docker Compose)
 
+仓库自带 `Dockerfile` 与 `docker-compose.yml`,无需本地 Python 环境:
+
 ```bash
+# 构建镜像并以后台守护方式启动(监听 http://localhost:8000)
 docker compose up --build -d
+
+# 查看健康状态与日志
+docker compose ps
+docker compose logs -f clock-align
+
+# 健康检查
+curl http://localhost:8000/health
+
+# 用仓库自带示例验证单对对齐与批量质量评估
+curl -s http://localhost:8000/align \
+  -F "reference=@examples/reference.jsonl;type=application/x-ndjson" \
+  -F "target=@examples/target.jsonl;type=application/x-ndjson" | python -m json.tool
+curl -s http://localhost:8000/align/batch \
+  -H 'Content-Type: application/json' \
+  --data @examples/batch_request.json | python -m json.tool
+
+# 停止并移除容器
+docker compose down
 ```
 
-服务监听 **8000** 端口:
+compose 内置 `/health` 健康检查(30s 周期、3 次重试),镜像以非 root
+用户运行。服务监听 **8000** 端口:
 
 | 地址                       | 说明                |
 | -------------------------- | ------------------- |
@@ -58,7 +82,7 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 ```bash
 curl http://localhost:8000/health
-# {"status":"ok","service":"clock-align","version":"1.0.0"}
+# {"status":"ok","service":"clock-align","version":"1.1.0"}
 ```
 
 ### POST /align
@@ -238,6 +262,114 @@ curl -s http://localhost:8000/align \
 * 跨时钟跳变的分段 `drift_ppm` 会显著偏大,可据此定位跳变位置;跳变点两侧锚点
   的置信度会明显降低。
 
+### POST /align/batch(批量质量评估)
+
+对**同一份参考日志**批量校准 2～20 个**带名字**的待校准日志,逐个复用
+`/align` 的完整对齐流程,再以同批数据做稳健的横向质量比较(仅接受
+`application/json`)。
+
+**请求体**:
+
+```jsonc
+{
+  "reference": [ /* 事件数组,或 JSONL 文本字符串,同 /align */ ],
+  "targets": [
+    { "name": "line-a", "target": [ /* 数组或 JSONL 串 */ ] },
+    { "name": "line-b", "target": "...",
+      "anchors": [ {"reference_index": 0, "target_index": 0} ] } // 可选,逐 target
+  ],
+  "time_field": null,    // 可选,全批共享(其余字段同 /align)
+  "label_field": null,
+  "iterations": 3,       // 可选,1..10,全批共享
+  "time_weight": 0.5     // 可选,0..2,全批共享
+}
+```
+
+**示例**(生成示例文件:`python scripts/make_batch_example.py`):
+
+```bash
+curl -s http://localhost:8000/align/batch \
+  -H 'Content-Type: application/json' \
+  --data @examples/batch_request.json | python -m json.tool
+```
+
+示例中 `line-a/b/c` 为健康日志(固定时钟偏移),`line-d` 每三个事件带一次
+15 s 局部时间毛刺(拉低 `mean_confidence`),`line-e` 半数事件被改标签
+(`matched_ratio ≈ 0.5`),响应中这两个日志会被标记异常并排在最前。
+
+**响应结构**:
+
+```jsonc
+{
+  "summary": {
+    "target_count": 5,        // 本批 target 数(2..20)
+    "anomalous_count": 2,     // 异常 target 数
+    "z_threshold": 3.0        // 判定阈值
+  },
+  "statistics": {             // 每个指标的同批中位数 / MAD / 1.4826·MAD
+    "residual_rms":    { "median": 0.0, "mad": 0.0, "normalized_scale": 0.0 },
+    "mean_confidence": { "median": 1.0, "mad": 0.0, "normalized_scale": 0.0 },
+    "matched_ratio":   { "median": 1.0, "mad": 0.0, "normalized_scale": 0.0 }
+  },
+  "results": [                // 已按排名规则排序
+    {
+      "rank": 1,
+      "input_index": 4,       // 在请求 targets[] 中的原始下标(0 基)
+      "name": "line-e",
+      "reference_count": 60,
+      "target_count": 60,
+      "matched_count": 30,
+      "matched_ratio": 0.5,   // matched_count / reference_count
+      "residual_rms": 0.0,    // 无锚点时为 null(对齐仍正常返回)
+      "mean_confidence": 1.0,
+      "z_scores": {           // 单侧稳健 z 分数;退化情形为 null
+        "residual_rms": 0.0,
+        "mean_confidence": 0.0,
+        "matched_ratio": null
+      },
+      "anomaly_reasons": ["matched_ratio"],
+      "anomalous": true,      // 任一 z > 3(或 MAD=0 退化命中)
+      "max_z": null,          // 各指标中最差 z;退化命中时为 null
+      "elapsed_seconds": 0.011
+    }
+  ]
+}
+```
+
+**稳健 z 分数(单侧)**:对每个指标以同批中位数 `median` 与 MAD(各值到
+中位数绝对偏差的中位数)计算
+
+```
+z_high = (x − median) / (1.4826 · MAD)   // residual_rms:大才异常
+z_low  = (median − x) / (1.4826 · MAD)   // mean_confidence / matched_ratio:小才异常
+```
+
+`1.4826` 使 MAD 成为正态分布标准差的一致估计,因此沿用常规 `z > 3` 离群
+规则。任意指标的 z 大于 3 即标记 `anomalous=true`,命中的指标列在
+`anomaly_reasons` 中。
+
+* **MAD 为 0 时**(超过半数批次取值相同,分母退化为 0):不返回无限大,
+  该指标 z 记为 `null`;**仅当取值落在异常侧且不同于中位数时才判异常**
+  ——即 `residual_rms` 大于中位数、`mean_confidence`/`matched_ratio` 小于
+  中位数;等于中位数 z=0,健康方向上的偏离不报警;
+* `residual_rms` 为 `null` 的 target(无任何锚点)不参与该指标的异常判定,
+  排序时其 residual 键按 `+∞` 处理(排在最后)。
+
+**排名规则**(稳定):异常优先(`anomalous` 在前)→ `mean_confidence`
+降序 → `residual_rms` 升序 → 请求中的输入顺序(`input_index`)。
+
+**校验(400)** 与 `/align` 相同的错误风格,信息可直接定位:
+
+* `targets` 不是数组、元素数不在 **2..20**;
+* 某项不是对象、缺少非空字符串 `name`、`name` 重复、缺少 `target`
+  (报错形如 `targets[3] (line-d): ...`);
+* 某个 target / reference 内容无法解析时,错误前缀分别为
+  `targets[k] (name):` 与 `reference:`;
+* 逐 target 的 `anchors` 非法时同样以 `targets[k] (name):` 定位;
+* 共享参数越界:`iterations` 须为 1..10 的整数,`time_weight` 须为 0..2,
+  `time_field`/`label_field` 须为非空字符串;
+* 非 `application/json` 请求返回 **415**。
+
 ## 算法概要
 
 * **候选对**:只有标签相同的 `(参考事件, 待校准事件)` 才能配对。每对的权重为
@@ -268,8 +400,22 @@ pip install pytest httpx python-multipart
 python -m pytest -q
 ```
 
+本地用起好的服务配合示例快速冒烟:
+
+```bash
+curl -s http://localhost:8000/align/batch \
+  -H 'Content-Type: application/json' \
+  --data @examples/batch_request.json | python -m json.tool
+```
+
 覆盖:已知分段漂移恢复、纯速率漂移、重复同标签保序匹配、标签全无交集、单锚点、
 外推标记、JSONL 文本输入、字段缺失报错以及 `/health`、`/align` 的
 JSON / multipart / 400 / 415 路径;人工锚点覆盖区间切分不跨锚、锁定事件不被
 自动匹配占用、单锚点/全锚点、JSON 与 multipart 两种提交,以及索引越界、重复
 占用、标签不一致、次序交叉、非法 JSON 的 400 定位报错。
+
+`tests/test_batch.py` 额外覆盖 `/align/batch`:中位数/MAD 与单侧 z 分数
+(非零 MAD、MAD=0 退化、指标为 null)、2..20 数量与重复/缺失 `name` 等
+400 校验、错误信息的 `targets[k] (name)` 定位、415、逐 target 锚点、
+异常优先 + 置信度降序 + residual 升序 + 输入顺序的稳定排名,以及 `/align`
+接口的兼容性回归。
