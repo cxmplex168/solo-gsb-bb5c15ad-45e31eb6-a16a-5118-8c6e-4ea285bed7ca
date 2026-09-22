@@ -2,8 +2,10 @@
 
 Endpoints
 ---------
-* ``GET  /health`` -- liveness probe
-* ``POST /align``  -- calibrate a drifted target JSONL against a reference
+* ``GET  /health``       -- liveness probe
+* ``POST /align``        -- calibrate a drifted target JSONL against a reference
+* ``POST /align/batch``  -- calibrate 2..20 named targets against one reference
+                            and summarise their alignment quality
 
 The ``/align`` endpoint accepts two equivalent content types:
 
@@ -24,6 +26,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
 from . import __version__
+from .batch import assess_batch, parse_batch_request
 from .io import AlignConfig, InputError, run_alignment
 
 app = FastAPI(
@@ -162,6 +165,88 @@ async def align(request: Request) -> JSONResponse:
 
         started = time.perf_counter()
         result = run_alignment(reference, target, cfg)
+        result["summary"]["elapsed_seconds"] = round(
+            time.perf_counter() - started, 6
+        )
+        return JSONResponse(result)
+
+    except InputError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+_BATCH_REQUEST_EXAMPLE = {
+    "reference": [
+        {"timestamp": 1790000000.0, "label": "LINE_START"},
+        {"timestamp": 1790000030.0, "label": "HEATER_ON"},
+        {"timestamp": 1790000060.0, "label": "TEMP_RAMP"},
+    ],
+    "targets": [
+        {
+            "name": "line-A",
+            "target": [
+                {"timestamp": 1790000005.6, "label": "LINE_START"},
+                {"timestamp": 1790000036.2, "label": "HEATER_ON"},
+                {"timestamp": 1790000067.4, "label": "TEMP_RAMP"},
+            ],
+        },
+        {
+            "name": "line-B",
+            "target": [
+                {"timestamp": 1790000006.0, "label": "LINE_START"},
+                {"timestamp": 1790000037.0, "label": "HEATER_ON"},
+                {"timestamp": 1790000040.0, "label": "GHOST"},
+                {"timestamp": 1790000068.0, "label": "TEMP_RAMP"},
+            ],
+        },
+    ],
+    "iterations": 3,
+    "time_weight": 0.5,
+}
+
+
+@app.post("/align/batch", tags=["alignment"], response_model=None,
+          openapi_extra={
+              "summary": "Batch quality assessment of 2..20 target logs",
+              "requestBody": {
+                  "required": True,
+                  "content": {
+                      "application/json": {
+                          "examples": {
+                              "batch": {"summary": "one reference, two targets",
+                                        "value": _BATCH_REQUEST_EXAMPLE}
+                          }
+                      }
+                  },
+              },
+          })
+async def align_batch(request: Request) -> JSONResponse:
+    """Calibrate several named targets against one reference.
+
+    JSON body only: ``{"reference": ..., "targets": [{"name": ...,
+    "target": ..., "anchors"?: ...}, ...], ...}``.  Each target runs the
+    same pipeline as ``/align``; the response ranks them by robust
+    median/MAD z-scores of ``residual_rms`` (high side) and
+    ``mean_confidence`` / ``matched_ratio`` (low side); any |z| > 3 flags
+    the target as anomalous.
+    """
+    content_type = request.headers.get("content-type", "")
+    if not content_type.startswith("application/json"):
+        raise HTTPException(
+            status_code=415,
+            detail="/align/batch accepts application/json only",
+        )
+
+    try:
+        try:
+            body = await request.json()
+        except Exception as exc:  # noqa: BLE001
+            raise InputError(f"invalid JSON body: {exc}") from exc
+
+        reference, targets, cfg = parse_batch_request(body)
+        started = time.perf_counter()
+        result = assess_batch(reference, targets, cfg)
         result["summary"]["elapsed_seconds"] = round(
             time.perf_counter() - started, 6
         )

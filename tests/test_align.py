@@ -309,7 +309,8 @@ def test_manual_anchors_locked_and_segmented():
 
     by_pair = {(a["reference_index"], a["target_index"]): a
                for a in res["anchors"]}
-    for ri, ti in ANCHORS:
+    for anchor in ANCHORS:
+        ri, ti = anchor["reference_index"], anchor["target_index"]
         a = by_pair[(ri, ti)]
         assert a["source"] == "manual"
         assert a["confidence"] == 1.0
@@ -317,8 +318,8 @@ def test_manual_anchors_locked_and_segmented():
     # Automatic matches never reuse a locked event or cross a lock.
     auto = [(a["reference_index"], a["target_index"])
             for a in res["anchors"] if a["source"] == "auto"]
-    locked_r = {ri for ri, _ in ANCHORS}
-    locked_t = {ti for _, ti in ANCHORS}
+    locked_r = {a["reference_index"] for a in ANCHORS}
+    locked_t = {a["target_index"] for a in ANCHORS}
     assert all(ri not in locked_r and ti not in locked_t for ri, ti in auto)
     ordered_locks = sorted(ANCHORS, key=lambda x: x["reference_index"])
     for ri, ti in auto:

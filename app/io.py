@@ -251,9 +251,19 @@ def _segments(mapping: ClockMapping) -> list[dict[str, Any]]:
 
 def run_alignment(refs_raw: Any, tgts_raw: Any,
                   cfg: AlignConfig) -> dict[str, Any]:
+    """Parse both streams and run the full alignment/assembly pipeline."""
     refs = parse_events(refs_raw, cfg)
     tgts = parse_events(tgts_raw, cfg)
+    return align_events(refs, tgts, cfg)
 
+
+def align_events(refs: Sequence[Event], tgts: Sequence[Event],
+                 cfg: AlignConfig) -> dict[str, Any]:
+    """Validate anchors, match/fit and assemble the response dict.
+
+    Takes already-parsed streams so callers running several targets against
+    the same reference (e.g. the batch endpoint) can parse it just once.
+    """
     if not refs and not tgts:
         raise InputError("both reference and target streams are empty")
 

@@ -2,7 +2,6 @@
 
 基于 **Python + FastAPI** 的时钟漂移校准服务:给定一份可信的**参考事件日志**(JSONL)
 和一份存在时钟漂移、缺失事件、插入(杂散)事件的**待校准日志**,服务会:
-
 1. 以**事件标签**作为匹配依据,用**单调动态规划(带权 LCS,Fenwick 树优化)**求两侧
    事件的最大权一致匹配——天然跳过缺失/插入事件,且匹配在两条时间轴上都严格保序;
 2. 以匹配上的事件对为**锚点**,拟合参考时间关于待校准时间的**分段线性时钟映射**
@@ -14,15 +13,18 @@
 
 ```
 app/
-  main.py       FastAPI 路由(POST /align、GET /health)
+  main.py       FastAPI 路由(POST /align、POST /align/batch、GET /health)
+  batch.py      批量质量评估:逐目标复用对齐流程 + 中位数/MAD 稳健 z 分数与排名
   matching.py   单调 DP 匹配 + 分段线性时钟映射
   io.py         JSONL 解析与结果装配
   timeutil.py   时间戳解析(秒/毫秒/微秒/ISO-8601)与格式化
   models.py     内部数据结构
-examples/       示例 JSONL(含漂移、跳变、缺失与插入)
+examples/         单目标示例 JSONL(含漂移、跳变、缺失与插入)
+examples/batch/   批量示例(1 份参考 + 5 份带 name 的目标,其中 line-5 为质量异常)
 scripts/
-  make_examples.py  生成示例数据
-tests/          pytest 测试(算法 + HTTP 层)
+  make_examples.py         生成单目标示例数据
+  make_batch_examples.py   生成批量示例数据与可直接提交的 batch_request.json
+tests/            pytest 测试(算法 + HTTP 层 + 批量评估)
 Dockerfile
 docker-compose.yml
 ```
@@ -43,6 +45,18 @@ docker compose up --build -d
 | http://localhost:8000/openapi.json | OpenAPI 模式  |
 
 停止:`docker compose down`
+
+启动后可一键冒烟测试批量质量评估接口(先在宿主机生成示例数据):
+
+```bash
+python3 scripts/make_batch_examples.py
+curl -s http://localhost:8000/align/batch \
+  -H 'Content-Type: application/json' \
+  --data-binary @examples/batch/batch_request.json | python3 -m json.tool
+```
+
+预期 `line-5`(标签被轮换、匹配率仅 0.925)排在第 1 位并带
+`"anomalous": true` / `"anomaly_reasons": ["matched_ratio_low"]`。
 
 ## 本地直接运行(可选)
 
@@ -238,6 +252,127 @@ curl -s http://localhost:8000/align \
 * 跨时钟跳变的分段 `drift_ppm` 会显著偏大,可据此定位跳变位置;跳变点两侧锚点
   的置信度会明显降低。
 
+### POST /align/batch(批量质量评估)
+
+用**一份参考日志**同时校准 **2～20 个带 `name` 的目标日志**,每个目标逐个复用
+与 `/align` 完全相同的解析/匹配/拟合流程,并汇总质量指标与稳健异常排名。仅接受
+`application/json`(不支持 multipart):
+
+```bash
+curl -s http://localhost:8000/align/batch \
+  -H 'Content-Type: application/json' \
+  -d '{
+        "reference": [
+          {"timestamp": 1790000000.0, "label": "LINE_START"},
+          {"timestamp": 1790000030.0, "label": "HEATER_ON"},
+          {"timestamp": 1790000060.0, "label": "TEMP_RAMP"}
+        ],
+        "targets": [
+          {"name": "line-A", "target": [
+            {"timestamp": 1790000005.6, "label": "LINE_START"},
+            {"timestamp": 1790000036.2, "label": "HEATER_ON"},
+            {"timestamp": 1790000067.4, "label": "TEMP_RAMP"}]},
+          {"name": "line-B", "target": [
+            {"timestamp": 1790000006.0, "label": "LINE_START"},
+            {"timestamp": 1790000037.0, "label": "HEATER_ON"},
+            {"timestamp": 1790000068.0, "label": "TEMP_RAMP"}]}
+        ],
+        "iterations": 3,
+        "time_weight": 0.5
+      }'
+```
+
+生成含异常样本的示例数据(`examples/batch/`,含可直接 `--data-binary` 提交的
+`batch_request.json`,日志以 JSONL 文本内嵌):
+
+```bash
+python scripts/make_batch_examples.py
+```
+
+#### 请求字段
+
+| 字段          | 类型                | 默认 | 说明                                                       |
+| ------------- | ------------------- | ---- | ---------------------------------------------------------- |
+| `reference`   | 数组或 JSONL 串     | 必填 | 全批共用的参考日志(只解析一次)                             |
+| `targets`     | 目标对象数组        | 必填 | **2～20** 项,每项形如 `{"name": ..., "target": ..., "anchors"?: ...}` |
+| `targets[k].name`   | 非空字符串   | 必填 | 目标名称,**批内唯一**,用于结果定位与排名                   |
+| `targets[k].target` | 数组或 JSONL 串 | 必填 | 该目标日志                                                 |
+| `targets[k].anchors` | 锚点对象数组 | 无   | 仅作用于该目标的人工锚点(格式同 `/align`)                  |
+| `time_field` / `label_field` / `iterations` / `time_weight` | 同 `/align` | 自动/3/0.5 | 全批共享的对齐参数 |
+
+#### 响应结构
+
+```jsonc
+{
+  "summary": {
+    "target_count": 5,
+    "anomaly_count": 1,
+    "z_threshold": 3.0,
+    "statistics": {                       // 本批各指标的中位数与 MAD
+      "residual_rms":    {"median": 0.0, "mad": 0.0},
+      "mean_confidence": {"median": 0.842578, "mad": 0.011428},
+      "matched_ratio":   {"median": 1.0, "mad": 0.0}
+    },
+    "elapsed_seconds": 0.041
+  },
+  "results": [                            // 已按排名规则排序
+    {
+      "rank": 1,
+      "name": "line-5",
+      "input_index": 4,                   // 在请求 targets 中的原始下标
+      "residual_rms": 0.0,                // 锚点残差 RMS(秒);无锚点时为 null
+      "mean_confidence": 0.842578,        // 锚点平均置信度 [0,1]
+      "matched_count": 37,                // 匹配锚点数
+      "target_count": 40,
+      "matched_ratio": 0.925,             // matched_count / target_count
+      "reference_count": 40,
+      "inserted_count": 3,
+      "missing_count": 3,
+      "manual_anchor_count": 0,
+      "z_residual_rms": null,             // 三项稳健 z 分数;退化时为 null
+      "z_mean_confidence": 0.0,
+      "z_matched_ratio": null,
+      "anomaly_reasons": ["matched_ratio_low"],
+      "anomalous": true
+    }
+  ]
+}
+```
+
+#### 稳健 z 分数与异常判定
+
+对每项指标,以**同批中位数(median)和中位绝对偏差(MAD)**计算单侧稳健 z 分数:
+
+```
+MAD = median(|x_i - median|)
+z   = 0.6745 · (x_i - median) / MAD
+```
+
+* `residual_rms` 取**高侧**(只关心偏大;低于中位数的 z 记 0,不参与异常);
+* `mean_confidence`、`matched_ratio` 取**低侧**(只关心偏小;高于中位数记 0);
+* 任一项 **|z| > 3** 即标记 `anomalous = true`,并在 `anomaly_reasons` 给出
+  `residual_rms_high` / `mean_confidence_low` / `matched_ratio_low`;
+* **MAD 为 0**(批次高度一致)时尺度退化:值与中位数在被关注侧**不同**即判异常,
+  此时对应 `z_*` 返回 `null`(不存在有限的 z);与中位数相同则 `z = 0`、不异常;
+* 无锚点的目标 `residual_rms = null`,`z_residual_rms = null`,且不因该指标异常。
+
+#### 排名规则(稳定排序)
+
+依次按:① 异常优先 → ② `mean_confidence` 降序 → ③ `residual_rms` 升序 →
+④ 请求中的输入顺序(`input_index`)排序;`rank` 从 1 开始。
+
+#### 校验(均返回 400,错误信息可定位)
+
+* 顶层缺 `reference` / `targets`,或请求体不是 JSON 对象、JSON 非法;
+* `targets` 不是数组,或数量不在 2～20;
+* 某项目标不是对象、缺 `name` / `target`、`name` 为空或批内重复;
+* 共享参数越界(`iterations` 非 1–10 整数、`time_weight` 非 0–2 数值);
+* 任一目标在解析/锚点校验阶段失败:错误带 `targets[k] ('name')` 前缀,
+  整个批次返回 400(不会部分成功);
+* 非 `application/json` 提交返回 **415**。
+
+`/align` 的请求/响应行为保持完全不变(同一套对齐管线,批量接口在内部复用)。
+
 ## 算法概要
 
 * **候选对**:只有标签相同的 `(参考事件, 待校准事件)` 才能配对。每对的权重为
@@ -272,4 +407,8 @@ python -m pytest -q
 外推标记、JSONL 文本输入、字段缺失报错以及 `/health`、`/align` 的
 JSON / multipart / 400 / 415 路径;人工锚点覆盖区间切分不跨锚、锁定事件不被
 自动匹配占用、单锚点/全锚点、JSON 与 multipart 两种提交,以及索引越界、重复
-占用、标签不一致、次序交叉、非法 JSON 的 400 定位报错。
+占用、标签不一致、次序交叉、非法 JSON 的 400 定位报错。批量接口(`test_batch.py`)
+覆盖中位数/MAD 计算、高低侧单侧 z、MAD=0 退化规则、residual_rms 高侧异常、
+无锚点指标缺失、异常优先+置信度/残差/输入序的稳定排名、每目标独立 anchors、
+目标级错误 `targets[k] ('name')` 定位、2～20 数量与重名等 400 校验、
+非法 JSON / 415、JSONL 文本输入以及 `/align` 与 OpenAPI 路径的兼容性。
